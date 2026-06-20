@@ -424,16 +424,14 @@
 </footer>
 
 <script>
-  // Reveal on scroll
-  const revealEls = document.querySelectorAll('.reveal');
+  // Add reveal class to all section inners + hero
+  document.querySelectorAll('section > .inner, .hero > .inner').forEach(el => el.classList.add('reveal'));
+
+  // Observe all reveal elements
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.15 });
-  revealEls.forEach(el => observer.observe(el));
-
-  // Add reveal class to sections
-  document.querySelectorAll('section > .inner').forEach(el => el.classList.add('reveal'));
-  observer.observe(document.querySelector('.hero .inner'));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   // Nav scroll effect
   window.addEventListener('scroll', () => {
